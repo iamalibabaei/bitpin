@@ -9,7 +9,7 @@ from .serializers import ListPostSerializer, PostScoreSerializer
 
 
 class ListPosts(viewsets.ReadOnlyModelViewSet):
-    # permission_classes = [IsAuthenticated] this is commented for some reason
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.annotate(
         score_average=F('score_sum') / F('score_count'),
     )
@@ -17,7 +17,7 @@ class ListPosts(viewsets.ReadOnlyModelViewSet):
 
 
 class ScorePostViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated] this is commented for some reason
+    permission_classes = [IsAuthenticated]
     queryset = Post.objects.all()
     serializer_class = PostScoreSerializer
 
